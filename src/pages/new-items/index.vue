@@ -5,41 +5,13 @@
       <nut-tab-pane title="物品" pane-key="2"> 容器 2 </nut-tab-pane>
     </nut-tabs>
     <div class="panel-operte">
-      <nut-button plain class="btn-add" @click="handleAdd">+</nut-button>
+      <nut-button plain class="btn-add">+</nut-button>
     </div>
-    <nut-action-sheet
-      v-model:visible="showAddOption"
-      :menu-items="menuItems"
-      @choose="chooseAddType"
-    />
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-
-const showAddOption = ref(false);
 const value = ref("1");
-const addType = ref("");
-
-const menuItems = [
-  {
-    name: "新增物品",
-    value: "1",
-  },
-  {
-    name: "新增容器",
-    value: "2",
-  },
-];
-
-const handleAdd = () => {
-  showAddOption.value = true;
-};
-
-const chooseAddType = (item) => {
-  addType.value = item.name;
-  console.log("chooseAddType", item);
-};
 </script>
 
 <style lang="scss">
