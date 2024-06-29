@@ -59,6 +59,15 @@ importers:
       '@tarojs/taro':
         specifier: 3.6.32
         version: 3.6.32(@tarojs/helper@3.6.32)(@tarojs/runtime@3.6.32(@tarojs/shared@3.6.32))(postcss@8.4.38)(vue@3.4.30(typescript@4.9.5))
+      axios:
+        specifier: ^1.7.2
+        version: 1.7.2
+      express:
+        specifier: ^4.19.2
+        version: 4.19.2
+      request:
+        specifier: ^2.88.2
+        version: 2.88.2
       vue:
         specifier: ^3.2.40
         version: 3.4.30(typescript@4.9.5)
@@ -2128,6 +2137,9 @@ packages:
 
   aws4@1.13.0:
     resolution: {integrity: sha512-3AungXC4I8kKsS9PuS4JH2nc+0bVY/mjgrephHTIi8fpEeGsTHBUJeosp0Wc1myYMElmD0B3Oc4XL/HVJ4PV2g==}
+
+  axios@1.7.2:
+    resolution: {integrity: sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==}
 
   babel-helper-evaluate-path@0.5.0:
     resolution: {integrity: sha512-mUh0UhS607bGh5wUMAQfOpt2JX2ThXMtppHRdRU1kL7ZLRWIXxoV2UIV1r2cAeeNeU1M5SB5/RSUgUxrK8yOkA==}
@@ -5833,6 +5845,9 @@ packages:
   proxy-addr@2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
+
+  proxy-from-env@1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
   prr@1.0.1:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
@@ -9855,6 +9870,14 @@ snapshots:
 
   aws4@1.13.0: {}
 
+  axios@1.7.2:
+    dependencies:
+      follow-redirects: 1.15.6
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+
   babel-helper-evaluate-path@0.5.0: {}
 
   babel-helper-mark-eval-scopes@0.4.3: {}
@@ -13456,7 +13479,7 @@ snapshots:
     dependencies:
       htmlparser2: 3.10.1
       postcss: 6.0.23
-      postcss-syntax: 0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
+      postcss-syntax: 0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
 
   postcss-import@14.1.0(postcss@8.4.38):
     dependencies:
@@ -13482,7 +13505,7 @@ snapshots:
   postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23):
     dependencies:
       postcss: 6.0.23
-      postcss-syntax: 0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
+      postcss-syntax: 0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
       remark: 9.0.0
       unist-util-find-all-after: 1.0.5
 
@@ -13678,7 +13701,7 @@ snapshots:
       postcss-value-parser: 4.2.0
       svgo: 2.8.0
 
-  postcss-syntax@0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23):
+  postcss-syntax@0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23):
     dependencies:
       postcss: 6.0.23
     optionalDependencies:
@@ -13772,6 +13795,8 @@ snapshots:
     dependencies:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
+
+  proxy-from-env@1.1.0: {}
 
   prr@1.0.1:
     optional: true
@@ -14609,7 +14634,7 @@ snapshots:
       postcss-sass: 0.3.5
       postcss-scss: 1.0.6
       postcss-selector-parser: 3.1.2
-      postcss-syntax: 0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
+      postcss-syntax: 0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.4.38))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
       postcss-value-parser: 3.3.1
       resolve-from: 4.0.0
       signal-exit: 3.0.7
