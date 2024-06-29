@@ -1,6 +1,6 @@
 import Components from "unplugin-vue-components/webpack";
 import NutUIResolver from "@nutui/auto-import-resolver";
-
+import path from "path";
 const config = {
   projectName: "storage-room",
   date: "2024-6-23",
@@ -28,6 +28,13 @@ const config = {
   compiler: {
     type: "webpack5",
     prebundle: { enable: false },
+  },
+  alias: {
+    "@/router": path.resolve(__dirname, "..", "src/router"),
+    "@/pages": path.resolve(__dirname, "..", "src/pages"),
+    "@/components": path.resolve(__dirname, "..", "src/components"),
+    "@/style": path.resolve(__dirname, "..", "src/utils"),
+    "@/utils": path.resolve(__dirname, "..", "src/utils"),
   },
   sass: {
     data: `@import "@nutui/nutui-taro/dist/styles/variables.scss";`,

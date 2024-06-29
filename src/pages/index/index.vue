@@ -16,6 +16,8 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
+import router, { routeMap } from "@/router/fn";
+console.log("router", router, routeMap);
 
 const showAddOption = ref(false);
 const value = ref("1");
@@ -23,12 +25,14 @@ const addType = ref("");
 
 const menuItems = [
   {
-    name: "新增物品",
-    value: "1",
+    name: "新增容器",
+    value: "new-items",
+    type: "1",
   },
   {
-    name: "新增容器",
-    value: "2",
+    name: "新增物品",
+    value: "new-items",
+    type: "2",
   },
 ];
 
@@ -39,6 +43,9 @@ const handleAdd = () => {
 const chooseAddType = (item) => {
   addType.value = item.name;
   console.log("chooseAddType", item);
+  router.push({
+    name: item.value,
+  });
 };
 </script>
 

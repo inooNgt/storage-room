@@ -1,4 +1,4 @@
-import { pages } from "./route";
+import { pages } from "./router/index";
 export default defineAppConfig({
   pages,
   window: {
