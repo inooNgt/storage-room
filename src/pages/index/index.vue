@@ -25,13 +25,13 @@ const addType = ref("");
 
 const menuItems = [
   {
-    name: "新增容器",
+    name: "新增物品",
     value: "new-items",
     type: "1",
   },
   {
-    name: "新增物品",
-    value: "new-items",
+    name: "新增容器",
+    value: "new-container",
     type: "2",
   },
 ];

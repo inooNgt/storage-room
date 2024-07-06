@@ -30,6 +30,9 @@ const config = {
     prebundle: { enable: false },
   },
   alias: {
+    "@/store": path.resolve(__dirname, "..", "src/store"),
+    "@/helper": path.resolve(__dirname, "..", "src/helper"),
+    "@/service": path.resolve(__dirname, "..", "src/service"),
     "@/router": path.resolve(__dirname, "..", "src/router"),
     "@/pages": path.resolve(__dirname, "..", "src/pages"),
     "@/components": path.resolve(__dirname, "..", "src/components"),
