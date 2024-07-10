@@ -1,8 +1,20 @@
 <template>
   <div class="page-home">
     <nut-tabs v-model="value" :animated-time="0">
-      <nut-tab-pane title="容器" pane-key="1"> 容器 1 </nut-tab-pane>
-      <nut-tab-pane title="物品" pane-key="2"> 容器 2 </nut-tab-pane>
+      <nut-tab-pane title="容器" pane-key="1">
+        <ul>
+          <li v-for="ctn in containers" :key="ctn.name">
+            {{ ctn.name }}
+          </li>
+        </ul>
+      </nut-tab-pane>
+      <nut-tab-pane title="物品" pane-key="2">
+        <ul>
+          <li v-for="item in itemlist" :key="item.name">
+            {{ item.name }}
+          </li>
+        </ul>
+      </nut-tab-pane>
     </nut-tabs>
     <div class="panel-operte">
       <nut-button plain class="btn-add" @click="handleAdd">+</nut-button>
@@ -16,12 +28,28 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
+import { useDidShow } from "@tarojs/taro";
+import { getContainers, getItems } from "@/service/store";
 import router, { routeMap } from "@/router/fn";
+import { useContainerList } from "./hooks/container-list";
 console.log("router", router, routeMap);
 
 const showAddOption = ref(false);
 const value = ref("1");
 const addType = ref("");
+
+const { containers, updateContainers } = useContainerList();
+console.log("updateContainers: ", updateContainers);
+useDidShow(() => {
+  updateContainers();
+});
+
+console.log("containers: ", containers.value);
+const itemlist = ref([]);
+const initItemlist = () => {
+  itemlist.value = getItems();
+};
+initItemlist();
 
 const menuItems = [
   {

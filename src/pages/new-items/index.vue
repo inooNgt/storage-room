@@ -40,6 +40,8 @@
 </template>
 <script setup>
 import { ref } from "vue";
+import { saveItem } from "@/service/store";
+import router from "@/router/fn";
 const formData = ref({
   name: "",
   itemType: "",
@@ -56,6 +58,8 @@ const submit = () => {
   formRef.value?.validate().then(({ valid, errors }) => {
     if (valid) {
       console.log("success:", formData.value);
+      saveItem(formData.value);
+      router.go(-1);
     } else {
       console.warn("error:", errors);
     }

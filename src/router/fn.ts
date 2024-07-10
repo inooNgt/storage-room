@@ -52,6 +52,11 @@ class Router {
       });
     }
   }
+  go(n: number) {
+    navigateBack({
+      delta: -n,
+    });
+  }
   push(opts: RouteOpt) {
     const name = typeof opts === "string" ? opts : opts?.name;
     const route = routeMap[name];

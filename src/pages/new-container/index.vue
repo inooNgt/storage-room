@@ -35,6 +35,8 @@
 <script setup>
 import { ref } from "vue";
 import { saveContainer, getContainers } from "@/service/store";
+import router from "@/router/fn";
+console.log("router: ", router);
 
 const formData = ref({
   name: "",
@@ -53,6 +55,7 @@ const submit = () => {
       console.log("success:", formData.value);
       saveContainer(formData.value);
       console.log("getContainers", getContainers());
+      router.go(-1);
     } else {
       console.warn("error:", errors);
     }
