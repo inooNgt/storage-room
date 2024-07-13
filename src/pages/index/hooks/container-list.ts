@@ -6,6 +6,7 @@ export function useContainerList() {
   const initContainers = () => {
     return (containers.value = getContainers());
   };
+  initContainers();
   return {
     containers,
     updateContainers: initContainers,

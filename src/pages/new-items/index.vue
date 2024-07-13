@@ -1,6 +1,7 @@
 <template>
   <nut-form
     ref="formRef"
+    class="form-item"
     :model-value="formData"
     :rules="{
       name: [{ required: true, message: '请填写名称' }],
@@ -27,28 +28,68 @@
       />
     </nut-form-item>
     <nut-form-item label="所属容器" prop="containerId">
-      <nut-input
-        v-model="formData.containerId"
-        placeholder="请输入所属容器"
-        type="text"
-      />
+      <nut-cell
+        class="cell-cnt"
+        title="请输入所属容器"
+        :desc="formData.containerName"
+        @click="showContainer = true"
+      ></nut-cell>
+      <nut-popup v-model:visible="showContainer" position="bottom">
+        <nut-picker
+          v-model="conValue"
+          :columns="columns"
+          title="容器"
+          @confirm="selectContainer"
+        />
+      </nut-popup>
     </nut-form-item>
     <nut-space style="margin: 10px">
-      <nut-button type="primary" size="small" @click="submit">提交</nut-button>
+      <nut-button
+        type="primary"
+        size="small"
+        @click="submit"
+        @cancel="showContainer = false"
+        >提交</nut-button
+      >
     </nut-space>
   </nut-form>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, computed } from "vue";
 import { saveItem } from "@/service/store";
+import { useContainerList } from "../index/hooks/container-list";
 import router from "@/router/fn";
-const formData = ref({
+const formData = reactive({
   name: "",
   itemType: "",
   containerId: "",
+  containerName: "",
 });
 
 const formRef = ref(null);
+const conValue = ref([]);
+const showContainer = ref(false);
+
+const { containers } = useContainerList();
+console.log("containers: ", containers);
+
+const columns = computed(() =>
+  containers.value.map((v) => {
+    return { ...v, text: v.name, value: v.Id };
+  })
+);
+
+const selectContainer = ({ selectedOptions }) => {
+  showContainer.value = false;
+  formData.containerId = selectedOptions[0]?.value;
+  formData.containerName = selectedOptions[0]?.text;
+  console.log(
+    "selectContainer",
+    conValue.value,
+    selectedOptions,
+    formData.containerName
+  );
+};
 
 const reset = () => {
   formRef.value?.reset();
@@ -57,8 +98,8 @@ const reset = () => {
 const submit = () => {
   formRef.value?.validate().then(({ valid, errors }) => {
     if (valid) {
-      console.log("success:", formData.value);
-      saveItem(formData.value);
+      console.log("success:", formData);
+      saveItem(formData);
       router.go(-1);
     } else {
       console.warn("error:", errors);
@@ -69,10 +110,17 @@ const submit = () => {
 const customBlurValidate = (prop) => {
   formRef.value?.validate(prop).then(({ valid, errors }) => {
     if (valid) {
-      console.log("success:", formData.value);
+      console.log("success:", formData);
     } else {
       console.warn("error:", errors);
     }
   });
 };
 </script>
+<style lang="scss">
+.form-item {
+  .nut-cell-group__wrap .cell-cnt {
+    padding: 0;
+  }
+}
+</style>

@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useDidShow } from "@tarojs/taro";
-import { getContainers, getItems } from "@/service/store";
+import { getItems } from "@/service/store";
 import router, { routeMap } from "@/router/fn";
 import { useContainerList } from "./hooks/container-list";
 console.log("router", router, routeMap);
@@ -39,6 +39,7 @@ const value = ref("1");
 const addType = ref("");
 
 const { containers, updateContainers } = useContainerList();
+console.log("containers: ", containers);
 console.log("updateContainers: ", updateContainers);
 useDidShow(() => {
   updateContainers();
