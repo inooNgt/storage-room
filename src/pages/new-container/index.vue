@@ -2,6 +2,7 @@
   <nut-form
     ref="formRef"
     :model-value="formData"
+    :show-error-line="false"
     :rules="{
       name: [{ required: true, message: '请填写名称' }],
     }"

@@ -7,3 +7,7 @@ ul,
 li {
   list-style-type: none;
 }
+
+.nut-form-item.error.line::before {
+  display: none;
+}

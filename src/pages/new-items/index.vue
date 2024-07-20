@@ -3,6 +3,7 @@
     ref="formRef"
     class="form-item"
     :model-value="formData"
+    :show-error-line="false"
     :rules="{
       name: [{ required: true, message: '请填写名称' }],
     }"
@@ -30,8 +31,7 @@
     <nut-form-item label="所属容器" prop="containerId">
       <nut-cell
         class="cell-cnt"
-        title="请输入所属容器"
-        :desc="formData.containerName"
+        :title="formData.containerName"
         @click="showContainer = true"
       ></nut-cell>
       <nut-popup v-model:visible="showContainer" position="bottom">

@@ -29,9 +29,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useDidShow } from "@tarojs/taro";
-import { getItems } from "@/service/store";
 import router, { routeMap } from "@/router/fn";
-import { useContainerList } from "./hooks/container-list";
+import { useContainerList, useItemlist } from "./hooks/container-list";
 console.log("router", router, routeMap);
 
 const showAddOption = ref(false);
@@ -39,18 +38,15 @@ const value = ref("1");
 const addType = ref("");
 
 const { containers, updateContainers } = useContainerList();
+const { itemlist, updateItemlist } = useItemlist();
 console.log("containers: ", containers);
 console.log("updateContainers: ", updateContainers);
 useDidShow(() => {
   updateContainers();
+  updateItemlist();
 });
 
 console.log("containers: ", containers.value);
-const itemlist = ref([]);
-const initItemlist = () => {
-  itemlist.value = getItems();
-};
-initItemlist();
 
 const menuItems = [
   {
