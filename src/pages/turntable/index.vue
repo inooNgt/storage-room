@@ -68,36 +68,38 @@ export default {
       isrun: false,
       rotateAngle: 0, // 旋转角度
       config: {
-        duration: 4000, // 总旋转时间 ms级
+        duration: 5000, // 总旋转时间 ms级
         circle: 8, // 旋转圈数
-        mode: "ease-in-out", // 由快到慢 惯性效果都省了
+        // ease-in-out：（加速然后减速），ease-in-out 函数等同于贝塞尔曲线(0.42, 0, 0.58, 1.0)
+        mode: "cubic-bezier(0.42, 0.35, 0.6, 1.0)", // 由快到慢 惯性效果都省了
+        // mode: "ease-in-out", // 由快到慢 惯性效果都省了
       },
       cricleAdd: 1, // 第几次抽奖
       drawIndex: 0, // 中奖索引 转盘图片排序 指针右手开始 0-...
       list: [
         {
-          title: "特等奖",
+          title: "可乐鸡翅",
         },
         {
-          title: "一等奖",
+          title: "红烧肉",
         },
         {
-          title: "二等奖",
+          title: "糖醋排骨",
         },
         {
-          title: "三等奖",
+          title: "西红柿炒鸡蛋",
         },
         {
-          title: "四等奖",
+          title: "红烧肉",
         },
         {
-          title: "五等奖",
+          title: "咸鱼烧茄子",
         },
         {
-          title: "六等奖",
+          title: "香煎茄子",
         },
         {
-          title: "七等奖",
+          title: "清蒸鲈鱼",
         },
       ],
     };
@@ -112,16 +114,15 @@ export default {
     async run() {
       if (this.isrun) return;
       this.isrun = true;
+      this.drawIndex = this.random(0, this.list.length - 1);
       this.rotateAngle =
-        this.config.circle * 360 * this.cricleAdd -
-        (22.5 + this.drawIndex * 45);
-      console.log("rotateAngle: ", this.rotateAngle);
-      // 圈数位置解析
-      // this.config.circle * 360 * this.cricleAdd 顺时针总圈数/累积总圈数
-      // 22.5 + this.drawIndex * 45 ===> (奖品位置 === this.drawIndex * 45) (指针中间位置 === 22.5)
+        this.config.circle * 360 * this.cricleAdd +
+        (this.drawIndex * 360) / this.list.length;
+      console.log("rotateAngle: ", this.rotateAngle, this.drawIndex);
 
       this.cricleAdd++;
       setTimeout(() => {
+        console.log(`恭喜你获得了`, this.list[this.drawIndex], this.drawIndex);
         this.isrun = false;
       }, this.config.duration);
     },

@@ -1,5 +1,6 @@
 <template>
   <nut-form
+    class="new-containers"
     ref="formRef"
     :model-value="formData"
     :show-error-line="false"
@@ -73,3 +74,7 @@ const customBlurValidate = (prop) => {
   });
 };
 </script>
+<style lang="scss">
+.new-containers {
+}
+</style>
