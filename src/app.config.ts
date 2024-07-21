@@ -7,4 +7,17 @@ export default defineAppConfig({
     navigationBarTitleText: "WeChat",
     navigationBarTextStyle: "black",
   },
+  tabBar: {
+    custom: false,
+    list: [
+      {
+        pagePath: "pages/turntable/index",
+        text: "首页",
+      },
+      {
+        pagePath: "pages/room/index",
+        text: "小屋",
+      },
+    ],
+  },
 });

@@ -1,15 +1,31 @@
 {
-  "miniprogramRoot": "./dist",
+  "miniprogramRoot": "dist/weapp/",
   "projectname": "storage-room",
   "description": "",
-  "appid": "touristappid",
+  "appid": "wx5a16860f332d882e",
   "setting": {
     "urlCheck": true,
     "es6": false,
     "enhance": false,
     "compileHotReLoad": false,
     "postcss": true,
-    "minified": false
+    "minified": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
   },
-  "compileType": "miniprogram"
+  "compileType": "miniprogram",
+  "libVersion": "3.5.0",
+  "srcMiniprogramRoot": "dist/",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
 }

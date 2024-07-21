@@ -1,6 +1,8 @@
 import Components from "unplugin-vue-components/webpack";
 import NutUIResolver from "@nutui/auto-import-resolver";
 import path from "path";
+const MODE = process.env.MODE;
+console.log("MODE: ", MODE);
 const config = {
   projectName: "storage-room",
   date: "2024-6-23",
@@ -17,7 +19,7 @@ const config = {
     375: 2 / 1,
   },
   sourceRoot: "src",
-  outputRoot: "dist",
+  outputRoot: `dist/${MODE}`,
   plugins: ["@tarojs/plugin-html"],
   defineConstants: {},
   copy: {
