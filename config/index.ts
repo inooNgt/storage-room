@@ -59,6 +59,9 @@ const config = {
         })
       );
     },
+    miniCssExtractPluginOption: {
+      ignoreOrder: true,
+    },
     postcss: {
       pxtransform: {
         enable: true,
