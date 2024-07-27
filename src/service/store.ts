@@ -5,7 +5,12 @@ console.log("setStorageSync", setStorageSync);
 
 const CKEY = `store.container`;
 const IKEY = `store.item`;
-export function saveContainer(data) {
+interface Goods {
+  Id: string;
+  name: string;
+  [key: string]: any;
+}
+export function saveContainer(data: Goods) {
   if (!data) return;
   data = { ...data };
   if (!data?.Id) data.Id = uuid();
@@ -20,7 +25,7 @@ export function getContainers() {
   return list || [];
 }
 
-export function saveItem(data) {
+export function saveItem(data: Goods) {
   if (!data) return;
   data = { ...data };
   if (!data?.Id) data.Id = uuid();

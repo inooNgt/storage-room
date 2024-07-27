@@ -23,6 +23,5 @@ export function uuid(len: number = 10, radix: number = 10) {
       }
     }
   }
-  console.log("uuid: ", uuid.join(""));
   return uuid.join("");
 }

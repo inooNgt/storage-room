@@ -47,7 +47,9 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import router from "@/router/fn";
+import { getMenulist } from "@/service/turntable";
 export default {
   computed: {
     animationClass() {
@@ -89,39 +91,14 @@ export default {
       },
       cricleAdd: 1, // 第几次抽奖
       drawIndex: 0, // 中奖索引 转盘图片排序 指针右手开始 0-...
-      list: [
-        {
-          title: "可乐鸡翅",
-        },
-        {
-          title: "红烧肉",
-        },
-        {
-          title: "糖醋排骨",
-        },
-        {
-          title: "西红柿炒鸡蛋",
-        },
-        {
-          title: "红烧肉",
-        },
-        {
-          title: "咸鱼烧茄子",
-        },
-        {
-          title: "香煎茄子",
-        },
-        {
-          title: "清蒸鲈鱼",
-        },
-      ],
     };
   },
   setup() {
+    const list = getMenulist() || [];
     const editMenu = () => {
       router.push({ name: "menu-list" });
     };
-    return { editMenu };
+    return { editMenu, list };
   },
   methods: {
     async run() {

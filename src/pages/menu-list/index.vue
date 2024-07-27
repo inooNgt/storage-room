@@ -1,81 +1,23 @@
 <template>
-  <div class="page-home">
-    <nut-tabs v-model="value" :animated-time="0">
-      <nut-tab-pane title="容器" pane-key="1">
-        <ul>
-          <li v-for="ctn in containers" :key="ctn.name">
-            {{ ctn.name }}
-          </li>
-        </ul>
-      </nut-tab-pane>
-      <nut-tab-pane title="物品" pane-key="2">
-        <ul>
-          <li v-for="item in itemlist" :key="item.name">
-            {{ item.name }}
-          </li>
-        </ul>
-      </nut-tab-pane>
-    </nut-tabs>
-    <div class="panel-operte">
-      <nut-button plain class="btn-add" @click="handleAdd">+</nut-button>
-    </div>
-    <nut-action-sheet
-      v-model:visible="showAddOption"
-      :menu-items="menuItems"
-      @choose="chooseAddType"
-    />
+  <div class="page-menulist">
+    <ul>
+      <li v-for="ctn in menulist" :key="ctn.title">
+        {{ ctn.title }}
+        <span>编辑</span>
+      </li>
+    </ul>
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import { useDidShow } from "@tarojs/taro";
-import router, { routeMap } from "@/router/fn";
-import { useContainerList, useItemlist } from "./hooks/container-list";
-console.log("router", router, routeMap);
+import { getMenulist } from "@/service/turntable";
 
-const showAddOption = ref(false);
-const value = ref("1");
-const addType = ref("");
-
-const { containers, updateContainers } = useContainerList();
-const { itemlist, updateItemlist } = useItemlist();
-console.log("containers: ", containers);
-console.log("updateContainers: ", updateContainers);
-useDidShow(() => {
-  updateContainers();
-  updateItemlist();
-});
-
-console.log("containers: ", containers.value);
-
-const menuItems = [
-  {
-    name: "新增物品",
-    value: "new-items",
-    type: "1",
-  },
-  {
-    name: "新增容器",
-    value: "new-container",
-    type: "2",
-  },
-];
-
-const handleAdd = () => {
-  showAddOption.value = true;
-};
-
-const chooseAddType = (item) => {
-  addType.value = item.name;
-  console.log("chooseAddType", item);
-  router.push({
-    name: item.value,
-  });
-};
+const menulist = ref(getMenulist());
+console.log("menulist: ", menulist);
 </script>
 
 <style lang="scss">
-.page-home {
+.page-menulist {
   .panel-operte {
     text-align: center;
   }
