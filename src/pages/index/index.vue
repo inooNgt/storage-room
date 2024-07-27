@@ -1,5 +1,5 @@
 <template>
-  <div class="overall">
+  <div class="page-turntable">
     <div class="zp-box">
       <div class="turntable" :style="rotateStyle">
         <div
@@ -19,18 +19,23 @@
           class="jiang"
           :style="`transform: rotate(${
             (-index * 360) / list.length
-          }deg) translateY(-100px);`"
+          }deg) translateY(-120px);`"
           v-for="(i, index) in list"
           :key="index"
         >
-          <span class="title">{{ i.title }}</span>
-          <div class="img">
-            <!-- <img src="@/assets/img/bck.jpg" alt /> -->
-            img{{ index }}
+          <div
+            class="title"
+            :style="{ width: (3.14 * this.radio) / list.length + 'px' }"
+          >
+            {{ i.title }}
           </div>
+          <!-- <div class="img"></div> -->
         </div>
       </div>
-      <div class="start-btn" @click="run">抽奖</div>
+      <div class="start-btn" @click="run">开始</div>
+    </div>
+    <div>
+      <nut-button type="info" size="small">编辑菜单</nut-button>
     </div>
   </div>
 </template>
@@ -66,6 +71,7 @@ export default {
       panziElement: null,
       tableClass: "",
       isrun: false,
+      radio: 160,
       rotateAngle: 0, // 旋转角度
       config: {
         duration: 5000, // 总旋转时间 ms级
@@ -166,7 +172,8 @@ export default {
 $tableSize: 320px; //转盘尺寸
 $btnSize: 60px; //抽奖按钮尺寸
 $time: 3s; //转动多少秒后停下的时间
-.overall {
+.page-turntable {
+  padding: 40px 16px;
   .zp-box {
     user-select: none;
     display: flex;
@@ -175,6 +182,7 @@ $time: 3s; //转动多少秒后停下的时间
     position: relative;
     width: $tableSize;
     height: $tableSize;
+    margin: 80px auto 20px;
     /* 抽奖按钮 */
     .start-btn {
       display: inline-block;
@@ -226,8 +234,10 @@ $time: 3s; //转动多少秒后停下的时间
         position: absolute;
         .title {
           font-weight: bold;
-          font-size: 18px;
+          font-size: 16px;
+          line-height: 1.2;
           color: #3b3b3b;
+          text-align: center;
         }
         .img {
           margin: 0.5rem auto;
@@ -272,86 +282,6 @@ $time: 3s; //转动多少秒后停下的时间
       .bck:nth-child(2n + 1) {
         background: #f8a281;
         box-shadow: 0 0 5px red;
-      }
-    }
-
-    /* 下面的css样式为每个奖品的旋转动画，这里写了对应8个奖品的动画，如果想要更多的话，可以添加 */
-    /* 例如： .wr8  @keyframes play8 */
-    .wr0,
-    .wr1,
-    .wr2,
-    .wr3,
-    .wr4,
-    .wr5,
-    .wr6,
-    .wr7 {
-      animation-duration: $time;
-      animation-timing-function: ease;
-      animation-fill-mode: both;
-      animation-iteration-count: 1;
-    }
-    // .wr0 {
-    //   animation-name: play0;
-    // }
-    // .wr1 {
-    //   animation-name: play1;
-    // }
-    // .wr2 {
-    //   animation-name: play2;
-    // }
-    // .wr3 {
-    //   animation-name: play3;
-    // }
-    // .wr4 {
-    //   animation-name: play4;
-    // }
-    // .wr5 {
-    //   animation-name: play5;
-    // }
-    // .wr6 {
-    //   animation-name: play6;
-    // }
-    // .wr7 {
-    //   animation-name: play7;
-    // }
-    @keyframes play0 {
-      to {
-        transform: rotate(calc(5 * 360deg + 360deg / var(--nums) * 0));
-      }
-    }
-    @keyframes play1 {
-      to {
-        transform: rotate(calc(5 * 360deg + 360deg / var(--nums) * 1));
-      }
-    }
-    @keyframes play2 {
-      to {
-        transform: rotate(calc(5 * 360deg + 360deg / var(--nums) * 2));
-      }
-    }
-    @keyframes play3 {
-      to {
-        transform: rotate(calc(5 * 360deg + 360deg / var(--nums) * 3));
-      }
-    }
-    @keyframes play4 {
-      to {
-        transform: rotate(calc(5 * 360deg + 360deg / var(--nums) * 4));
-      }
-    }
-    @keyframes play5 {
-      to {
-        transform: rotate(calc(5 * 360deg + 360deg / var(--nums) * 5));
-      }
-    }
-    @keyframes play6 {
-      to {
-        transform: rotate(calc(5 * 360deg + 360deg / var(--nums) * 6));
-      }
-    }
-    @keyframes play7 {
-      to {
-        transform: rotate(calc(5 * 360deg + 360deg / var(--nums) * 7));
       }
     }
   }

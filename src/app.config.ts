@@ -8,14 +8,20 @@ export default defineAppConfig({
     navigationBarTextStyle: "black",
   },
   tabBar: {
-    custom: false,
+    custom: true,
+    selectedColor: "#fa2c19",
+    color: "#999999",
     list: [
       {
-        pagePath: "pages/turntable/index",
+        pagePath: "pages/index/index",
+        selectedIconPath: "./assets/img/home-active.png",
+        iconPath: "./assets/img/home-gray.png",
         text: "首页",
       },
       {
         pagePath: "pages/room/index",
+        selectedIconPath: "./assets/img/menu-active.png",
+        iconPath: "./assets/img/menu-gray.png",
         text: "小屋",
       },
     ],

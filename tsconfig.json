@@ -18,7 +18,13 @@
     "jsx": "preserve",
     "allowJs": true,
     "resolveJsonModule": true,
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "@/router/*": ["src/router/*"],
+      "@/service/*": ["src/service/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/store/*": ["src/store/*"]
+    }
   },
   "include": ["./src", "./types", "components.d.ts", "devtools"],
   "compileOnSave": false
